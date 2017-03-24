@@ -60,6 +60,44 @@ function updateProfile($postdata){
 	exit;		
 }
 
+?>
+
+/** IONIC Request 
+
+$scope.updateProfile = function(postdata) {
+		jQuery('.account_form .required').each(function(index){
+			if(jQuery(this).val() == ''){
+				jQuery(this).parent().addClass('error');         
+			}else{
+				jQuery(this).parent().removeClass('error');
+			}
+		});
+		if(jQuery('.account_form .required').parent().hasClass('error')) return false;
+		
+		if ($scope.profile_image != null && $scope.profile_image.length > 0) {
+		  var savedImages = $scope.profile_image;	  
+		}else{
+			var savedImages = '';	
+		}
+		var current_user = AuthService.current_user();
+		$scope.ajaxDisplayProject = true;
+		 $http.post(WEB_SERVICES.api_url, {api_key:WEB_SERVICES.api_key, action : 'update-profile',name:postdata.name,companyname:postdata.companyname,city:postdata.city,stategroup:postdata.stategroup,zipcode:postdata.zipcode,address:postdata.address,phonenumber:postdata.phonenumber,fax:postdata.fax,website:postdata.website,profile_image:savedImages,user_id:current_user.id}).then(function (response){																															
+			var alertPopup = $ionicPopup.alert({
+				title: response.data.status,
+				template: response.data.message
+			});
+			$scope.ajaxDisplayProject = false;
+			if(response.data.status =='Success'){
+				$state.go('main.settings', {}, {reload: true});
+			}
+		  });
+	  
+	  }
+
+*/
+
+
+
 
 function updateProfileDetails($postdata){
 	$profile_image = $postdata->profile_image;
